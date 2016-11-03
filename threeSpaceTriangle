@@ -1,0 +1,139 @@
+#include <iostream> include <cmath>
+
+using namespace std;
+
+void instruct();
+
+double findVector(double, double);
+
+double findMagnitude(double, double, double);
+
+double findDotProduct(double, double, double, double, double, double);
+
+double findAngle(double, double, double);
+
+int main ()
+{
+     double a, b, c, d, e, f, g, h, i;
+     string triangleType;
+
+     void instruct();
+     cin >> a >> b >> c >> d >> e >> f >> g >> h >> i;
+
+     double vA = findVector(double d, double a);
+     double vB = findVector(double e, double b);
+     double vC = findVector(double f, double c);
+     double vD = findVector(double g, double a);
+     double vE = findVector(double h, double b);
+     double vF = findVector(double i, double c);
+
+     double magA = findMagnitude(double vA, double vB, double vC);
+     double magB = findMagnitude(double vD, double vE, double vF);
+
+     double productA = findDotProduct(double vA, double vB, double vC, double vD, double vE, double vF);
+     
+     double angleA = findAngle(double productA, double magA, double magB);
+
+     double vG = findVector(double a, double d);
+     double vH = findVector(double b, double e);
+     double vI = findVector(double c, double f);
+     double vJ = findVector(double g, double d);
+     double vK = findVector(double h, double e);
+     double vL = findVector(double i, double f);
+
+     double magC = findMagnitude(double vG, double vH, double vI);
+     double magD = findMagnitude(double vJ, double vK, double vL);
+
+     double productB = findDotProduct(double vG, double vH, double vI, double vJ, double vK, double vL);
+
+     double angleB = findAngle(double productB, double magC, double magD);
+
+     double angleC = 180 - (angleA +angleB);
+
+     if ((angleA && angleB && angleC) < 90)
+     {
+          string triangleType = 'acute';
+     }
+     else if ((angleA || angleB || angleC) > 90)
+     {
+          string triangleType = 'obtuse';
+     }
+     else if ((angleA || angleB || angleC) == 90)
+     {
+          string triangleType = 'right';
+     }
+
+     cout << "The angles of your triangle are " << angleA << ", " << angleB << ", and " << angleC << "." << endl;
+     cout << "This means your triangle is " << triangleType << "." << endl;
+
+     return 0;
+}
+
+void instruct()
+{
+     cout << "This program will allow you to enter three points" << endl;
+     cout << "in 3space, and tell you what type of triangle" << endl;
+     cout << "they form, based on the angles of the triangle." << endl;
+     cout << "Please enter three points in three space." << endl;
+     cout << "The first three numbers you enter will be the" << endl;
+     cout << "first point, the second three will be the" << endl;
+     cout << "second point, and so on." << endl;
+}
+
+double findVector(double a, double b)
+{
+      double v = b - a;
+      return v;
+}
+
+double findMagnitude(double a, double b, double c)
+{
+     double magnitude = sqrt(a * a + b * b + c * c);
+     return magnitude;
+}
+
+double findDotProduct(double a, double b, double c, double d, double e, double f)
+{
+     double dotProduct = d * a + e * b + f * c;
+     return dotProduct;
+}
+
+double findAngle(double a, double b, double c)
+{
+     angle = acos(a / (b * c));
+     return angle;
+}
+truct()
+{
+     cout << "This program will allow you to enter three points" << endl;
+     cout << "in 3space, and tell you what type of triangle" << endl;
+     cout << "they form, based on the angles of the triangle." << endl;
+     cout << "Please enter three points in three space." << endl;
+     cout << "The first three numbers you enter will be the" << endl;
+     cout << "first point, the second three will be the" << endl;
+     cout << "second point, and so on." << endl;
+}
+
+double findVector(double a, double b)
+{
+      double v = b - a;
+      return v;
+}
+
+double findMagnitude(double a, double b, double c)
+{
+     double magnitude = sqrt(a * a + b * b + c * c);
+     return magnitude;
+}
+
+double findDotProduct(double a, double b, double c, double d, double e, double f)
+{
+     double dotProduct = d * a + e * b + f * c;
+     return dotProduct;
+}
+
+double findAngle(double a, double b, double c)
+{
+     angle = acos(a / (b * c));
+     return angle;
+}
