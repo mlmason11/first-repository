@@ -108,7 +108,7 @@ void instruct()
 // Finds the individual x, y, or z component of a vector created by two of the points entered by the user
 double findVector(double a, double b)
 {
-      double v = b - a;
+      double v = a - b;
       return v;
 }
 
