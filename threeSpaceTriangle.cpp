@@ -16,7 +16,7 @@ double findDotProduct(double, double, double, double, double, double);
 
 double findAngle(double, double, double);
 
-double main() // Start of the main function
+int main() // Start of the main function
 {
      // Declares the variables for the thre points the user will input
      double a, b, c, d, e, f, g, h, i;
@@ -28,40 +28,40 @@ double main() // Start of the main function
      cin >> a >> b >> c >> d >> e >> f >> g >> h >> i;
 
      // Finds the two vectors originating at point 1 by calling the function findVector
-     double vA = findVector(double d, double a);
-     double vB = findVector(double e, double b);
-     double vC = findVector(double f, double c);
-     double vD = findVector(double g, double a);
-     double vE = findVector(double h, double b);
-     double vF = findVector(double i, double c);
+     double vA = findVector(d, a);
+     double vB = findVector(e, b);
+     double vC = findVector(f, c);
+     double vD = findVector(g, a);
+     double vE = findVector(h, b);
+     double vF = findVector(i, c);
 
      // Finds the magnitudes of the two vectors originating at point 1 by calling the function findMagnitude
-     double magA = findMagnitude(double vA, double vB, double vC);
-     double magB = findMagnitude(double vD, double vE, double vF);
+     double magA = findMagnitude(vA, vB, vC);
+     double magB = findMagnitude(vD, vE, vF);
 
      // Finds the dot product of the two vectors originating at point 1 by calling the function findDotProduct
-     double productA = findDotProduct(double vA, double vB, double vC, double vD, double vE, double vF);
+     double productA = findDotProduct(vA, vB, vC, vD, vE, vF);
      
      // Finds the angle at point 1 by calling the function findAngle
-     double angleA = findAngle(double productA, double magA, double magB);
+     double angleA = findAngle(productA, magA, magB);
 
      // Finds the two vectors originating at  point 2 by calling the function findVector
-     double vG = findVector(double a, double d);
-     double vH = findVector(double b, double e);
-     double vI = findVector(double c, double f);
-     double vJ = findVector(double g, double d);
-     double vK = findVector(double h, double e);
-     double vL = findVector(double i, double f);
+     double vG = findVector(a, d);
+     double vH = findVector(b, e);
+     double vI = findVector(c, f);
+     double vJ = findVector(g, d);
+     double vK = findVector(h, e);
+     double vL = findVector(i, f);
 
      // Finds the magnitudes of the two vectors originating at point 2 by calling the function findMagnitude
-     double magC = findMagnitude(double vG, double vH, double vI);
-     double magD = findMagnitude(double vJ, double vK, double vL);
+     double magC = findMagnitude(vG, vH, vI);
+     double magD = findMagnitude(vJ, vK, vL);
 
      // Finds the dot product of the two vectors originating at point 2 by calling the function findDotProduct
-     double productB = findDotProduct(double vG, double vH, double vI, double vJ, double vK, double vL);
+     double productB = findDotProduct(vG, vH, vI, vJ, vK, vL);
 
      // Finds the angle at point 2 by calling the function findAngle
-     double angleB = findAngle(double productB, double magC, double magD);
+     double angleB = findAngle(productB, magC, magD);
 
      // Finds the angle at point 3. Doesn't need a function because we already have the other two angles
      double angleC = 180.0 - (angleA + angleB);
@@ -129,6 +129,6 @@ double findDotProduct(double a, double b, double c, double d, double e, double f
 // Finds the angle at one of the points of the triangle using the dot product of the two vectors originating at that point, as well as their magnitudes
 double findAngle(double a, double b, double c)
 {
-     angle = (180.0 / M_PI) * (acos(a / (b * c)));
+     double angle = (180.0 / M_PI) * (acos(a / (b * c)));
      return angle;
 }
