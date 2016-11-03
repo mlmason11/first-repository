@@ -22,7 +22,7 @@ int main() // Start of the main function
      double a, b, c, d, e, f, g, h, i;
 
      // Calls the function instruct to tell the user how to use the program
-     void instruct();
+     instruct();
      
      // Takes input from the keyboard entered by the user
      cin >> a >> b >> c >> d >> e >> f >> g >> h >> i;
@@ -84,7 +84,7 @@ int main() // Start of the main function
      }
 
      // Prints out a statement telling the user the lenghts of the sides of the triangle
-     cout << "The lengths of the sides of the triangle are" << magA << ", " << magB << ", and " << magD << "." << endl;
+     cout << "The lengths of the sides of the triangle are " << magA << ", " << magB << ", and " << magD << "." << endl;
 
      return 0;
 } // End of main function
