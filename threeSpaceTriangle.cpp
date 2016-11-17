@@ -2,6 +2,8 @@
 
 #include <cmath> // Includes the cmath library
 
+#include <string> // Includes string library
+
 // Compiler directive. Standard namespace
 using namespace std;
 
@@ -16,75 +18,76 @@ double findDotProduct(double, double, double, double, double, double);
 
 double findAngle(double, double, double);
 
+struct point {
+     double x;
+     double y;
+     double z;
+} pointA, pointB, pointC;
+
+struct vector {
+     double x;
+     double y;
+     double z;
+} vectorAB, vectorAC, vectorBA, vectorBC;
+
 int main() // Start of the main function
 {
      // Declares the variables for the thre points the user will input
-     double a, b, c, d, e, f, g, h, i;
-
+     point pointA, pointB, pointC;
      // Calls the function instruct to tell the user how to use the program
      instruct();
      
      // Takes input from the keyboard entered by the user
-     cin >> a >> b >> c >> d >> e >> f >> g >> h >> i;
+     cin >> pointA.x >> pointA.y >> pointA.z >> pointB.x >> pointB.y >> pointB.z >> pointC.x >> pointC.y >> pointC.z;
 
-     // Finds the two vectors originating at point 1 by calling the function findVector
-     double vA = findVector(d, a);
-     double vB = findVector(e, b);
-     double vC = findVector(f, c);
-     double vD = findVector(g, a);
-     double vE = findVector(h, b);
-     double vF = findVector(i, c);
+     // Data structures vector attempt
+     vectorAB.x = findVector(pointB.x, pointA.x);
+     vectorAB.y = findVector(pointB.y, pointA.y);
+     vectorAB.z = findVector(pointB.z, pointA.z);
+     vectorAC.x = findVector(pointC.x, pointA.x);
+     vectorAC.y = findVector(pointC.y, pointA.y);
+     vectorAC.z = findVector(pointC.z, pointA.z);
 
      // Finds the magnitudes of the two vectors originating at point 1 by calling the function findMagnitude
-     double magA = findMagnitude(vA, vB, vC);
-     double magB = findMagnitude(vD, vE, vF);
+     double magAB = findMagnitude(vectorAB.x, vectorAB.y, vectorAB.z);
+     double magAC = findMagnitude(vectorAC.x, vectorAC.y, vectorAC.z);
 
      // Finds the dot product of the two vectors originating at point 1 by calling the function findDotProduct
-     double productA = findDotProduct(vA, vB, vC, vD, vE, vF);
+     double productA = findDotProduct(vectorAB.x, vectorAB.y, vectorAB.z, vectorAC.x, vectorAC.y, vectorAC.z);
      
      // Finds the angle at point 1 by calling the function findAngle
-     double angleA = findAngle(productA, magA, magB);
+     double angleA = findAngle(productA, magAB, magAC);
 
-     // Finds the two vectors originating at  point 2 by calling the function findVector
-     double vG = findVector(a, d);
-     double vH = findVector(b, e);
-     double vI = findVector(c, f);
-     double vJ = findVector(g, d);
-     double vK = findVector(h, e);
-     double vL = findVector(i, f);
+     // Data structure vectors attempt
+     vectorBA.x = findVector(pointA.x, pointB.x);
+     vectorBA.y = findVector(pointA.y, pointB.y);
+     vectorBA.z = findVector(pointA.z, pointB.z);
+     vectorAC.x = findVector(pointC.x, pointB.x);
+     vectorAC.y = findVector(pointC.y, pointB.y);
+     vectorAC.z = findVector(pointC.z, pointB.z);
 
      // Finds the magnitudes of the two vectors originating at point 2 by calling the function findMagnitude
-     double magC = findMagnitude(vG, vH, vI);
-     double magD = findMagnitude(vJ, vK, vL);
+     double magBA = findMagnitude(vectorBA.x, vectorBA.y, vectorBA.z);
+     double magBC = findMagnitude(vectorBC.x, vectorBC.y, vectorBC.z);
 
      // Finds the dot product of the two vectors originating at point 2 by calling the function findDotProduct
-     double productB = findDotProduct(vG, vH, vI, vJ, vK, vL);
+     double productB = findDotProduct(vectorBA.x, vectorBA.y, vectorBA.z, vectorBC.x, vectorBC.y, vectorBC.z);
 
      // Finds the angle at point 2 by calling the function findAngle
-     double angleB = findAngle(productB, magC, magD);
+     double angleB = findAngle(productB, magBA, magBC);
 
      // Finds the angle at point 3. Doesn't need a function because we already have the other two angles
      double angleC = 180.0 - (angleA + angleB);
 
      // Prints out a statement telling the user the value of the three angles of the triangle
-     cout << "The angles of your triangle are " << angleA << ", " << angleB << ", and " << angleC << "." << endl;
+     cout << "The angles of your triangle in degrees are " << angleA << ", " << angleB << ", and " << angleC << "." << endl;
 
      // Prints out a statement classifying the triangle, depending on the value of the three angles
-     if((angleA && angleB && angleC) < 90.0)
-     {
-          cout << "Your triangle is an acute triangle." << endl;
-     }
-     else if((angleA || angleB || angleC) > 90.0)
-     {
-          cout << "Your triangle is an obtuse triangle." << endl;
-     }
-     else if((angleA || angleB || angleC) == 90.0)
-     {
-          cout << "Your triangle is a right triangle." << endl;
-     }
+     string triangleType = angleType(angleA, angleB, angleC); 
+     cout << "Your triangle is " << triangleType << " triangle." << endl;
 
      // Prints out a statement telling the user the lenghts of the sides of the triangle
-     cout << "The lengths of the sides of the triangle are " << magA << ", " << magB << ", and " << magD << "." << endl;
+     cout << "The lengths of the sides of the triangle are " << magAB << ", " << magAC << ", and " << magBC << "." << endl;
 
      return 0;
 } // End of main function
@@ -131,4 +134,23 @@ double findAngle(double a, double b, double c)
 {
      double angle = (180.0 / M_PI) * (acos(a / (b * c)));
      return angle;
+}
+
+string angleType(double a, double b, double c)
+{
+     string acuteAngle = "an acute";
+     string obtuseAngle = "an obtuse";
+     string rightAngle = "a right"
+     if ((a && b && c) < 90.0)
+     {
+          return acuteAngle;
+     }
+     else if ((a || b || c) > 90.0)
+     {
+          return obtuseAngle;
+     }
+     else if ((a || b || c) == 90.0)
+     {
+          return rightAngle;
+     }
 }
