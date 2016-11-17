@@ -8,7 +8,7 @@ using namespace std;
 
 void instruct();
 
-bool isVowel(ch);
+bool isVowel(char);
 
 string pigLatin(string);
 
@@ -18,9 +18,12 @@ int main()
 
      	void instruct();
      	getline(cin, word);
+
+	string pigLatinWord = pigLatin(word);
+
      	cout << "Your word is " << word << "." << endl;
      	cout << endl;
-     	cout << "Your word in Pig Latin is " << pigLatin(word) << "." << endl;
+     	cout << "Your word in Pig Latin is " << pigLatinWord << "." << endl;
 
      	return 0;
 }
@@ -56,13 +59,13 @@ bool isVowel(char ch)
 
 string pigLatin(string regStr)
 {
-     	char ch = regStr[0];
+     	
+	char ch = regStr[0];
      	bool isVowel(char ch);
-     	if (isVowel = true)
+     	if (isVowel)
      	{
-	  	string newString;
-          	newString = regstring + "way";
-	  	return newString;
+          	regStr = regStr + "way";
+	  	return regStr;
      	}
      	else
      	{
@@ -72,17 +75,10 @@ string pigLatin(string regStr)
 			string firstSound;
 			firstSound = regStr.substr(0, i);
 			string restOfWord;
-			restOfWord = regStr.substr((i +1), regStr.length())
-			return firstSound;
-			return restOfWord;
+			restOfWord = regStr.substr((i +1), regStr.length());
+			regStr = restOfWord + firstSound + "ay";		
+			return regStr;
 		}
-		string pigLatin;
-		pigLatin = restOfWord + firstSound + "ay";		
-		return pigLatin;
-
-
-
-
      	}
 }
 
