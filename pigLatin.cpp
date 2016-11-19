@@ -23,12 +23,12 @@ int main()
         cout << endl;
    	getline(cin, mySentence);
 
-     	cout << "Your word is " << word << "." << endl;
+     	cout << "Your word is " << mySentence << "." << endl;
      	cout << endl;
 
-	word = pigLatin(mySentence);	
+	mySentence = pigLatin(mySentence);	
 
-     	cout << "Your word in Pig Latin is " << word << "." << endl;
+     	cout << "Your word in Pig Latin is " << mySentence << "." << endl;
 
      	return 0;
 }
