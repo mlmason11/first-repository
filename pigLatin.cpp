@@ -6,7 +6,7 @@
 
 using namespace std;
 
-bool isVowel(string, char);
+bool isVowel(char);
 
 bool firstLetterIsVowel(string);
 
