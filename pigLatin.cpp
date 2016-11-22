@@ -2,8 +2,6 @@
 
 #include <string>
 
-#include <cmath>
-
 using namespace std;
 
 bool isVowel(char);
@@ -12,9 +10,11 @@ bool firstLetterIsVowel(string);
 
 bool firstSoundQU(string);
 
-int vowelPosition(string, char);
+int vowelPosition(string);
 
-string pigLatin(string);
+string pigLatinWord(string);
+
+string pigLatinSentence(string);
 
 int main()
 {
@@ -30,13 +30,14 @@ int main()
      	cout << "Your word is " << mySentence << "." << endl;
      	cout << endl;
 
-	mySentence = pigLatin(mySentence);	
+	mySentence = pigLatinWord(mySentence);	
 
      	cout << "Your word in Pig Latin is " << mySentence << "." << endl;
 
      	return 0;
 }
 
+// Checks to see if letters in the word are vowels
 bool isVowel(char ch)
 {
 	switch (ch)
@@ -82,6 +83,7 @@ bool firstLetterIsVowel(string str)
  	}
 }
 
+// Boolean to account for the special case of words that have a beginning sound of "qu" or "squ"
 bool firstSoundQU(string str)
 {
 	if (((str[0] == 'Q') || (str[0] == 'q')) && (str[1] == 'u'))
@@ -137,7 +139,7 @@ int vowelPosition(string str)
 }
 
 // Using the int value of the position of the first vowel, translates the word to Pig Latin.
-string pigLatin(string str)
+string pigLatinWord(string str)
 {
 	// Position of first vowel
 	int vowel = vowelPosition(str);
@@ -154,4 +156,20 @@ string pigLatin(string str)
 		str = restOfWord + consonantSound + "ay"; // Combines all three parts to make the Pig Latin word
 	}
 	return str;
+}
+
+string pigLatinSentence(string)
+{
+
+
+
+
+
+
+
+
+
+
+
+
 }
