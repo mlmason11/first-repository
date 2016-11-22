@@ -6,9 +6,13 @@
 
 using namespace std;
 
-bool isVowel(char);
+bool isVowel(string, char);
 
-int vowelPosition(string);
+bool firstLetterIsVowel(string);
+
+bool firstSoundQU(string);
+
+int vowelPosition(string, char);
 
 string pigLatin(string);
 
@@ -33,26 +37,67 @@ int main()
      	return 0;
 }
 
-// Boolean that returns true if the first letter of a word is a vowel and false if it is a consonant.
 bool isVowel(char ch)
 {
 	switch (ch)
-     	{
-          	case 'A':
-	  	case 'a':
-	  	case 'E':
-	  	case 'e':
-	  	case 'I':
-          	case 'i':
-	  	case 'O':
-	  	case 'o':
-	  	case 'U':
-	  	case 'u':
-	       		return true;
-	  	default:
-	       		return false;
-     	}
+	{
+		case 'A':
+		case 'a':
+		case 'E':
+		case 'e':
+		case 'I':
+		case 'i':
+		case 'O':
+		case 'o':
+		case 'U':
+		case 'u':
+		case 'Y':
+		case 'y':
+			return true;
+		default:
+			return false;
+	}
 }
+
+// Boolean that returns true if the first letter of a word is a vowel and false if it is a consonant.
+bool firstLetterIsVowel(string str)
+{
+	char ch = str[0];
+	switch (ch)
+	{
+		case 'A':
+		case 'a':
+		case 'E':
+		case 'e':
+		case 'I':
+		case 'i':
+		case 'O':
+		case 'o':
+		case 'U':
+		case 'u':
+			return true;
+		default:
+			return false;
+		
+ 	}
+}
+
+bool firstSoundQU(string str)
+{
+	if (((str[0] == 'Q') || (str[0] == 'q')) && (str[1] == 'u'))
+	{
+		return true;
+	}
+	else if (((str[0] == 'S') || (str[0] == 's')) && (str[1] == 'q') && (str[2] == 'u'))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 
 // Checks to see if the first letter of the word is a vowel, returns an int called counter.
 // If first letter is a vowel, the counter returns 0, because that it the first vowel's position.
@@ -62,13 +107,26 @@ int vowelPosition(string str)
 {
 	int counter; // Position of the first vowel of the word
 	// Checks to see if the first letter of the word is a consonant
-	if (!(isVowel(str[0])))
+	if (!(firstLetterIsVowel(str)))
 	{
-		// Counts the position of each letter of the word until it comes to a vowel
-		for (int i = 0; i <= str.length(); i++)
+		if (firstSoundQU(str))
 		{
-			if(isVowel(str[i])) break;
-			counter = i + 1;
+			if ((str[0] == 'S') || (str[0] == 's'))
+			{
+				counter = 3;
+			}
+			else if ((str[0] == 'Q') || (str[0] == 'q'))
+			{
+				counter = 2;
+			}
+		}
+		else
+		{
+			for (int i = 1; i <= str.length(); i++)
+			{
+				if (isVowel(str[i])) break;
+				counter = i + 1;
+			}
 		}
 	}
 	else
