@@ -2,6 +2,16 @@
 
 #include <string>
 
+#include <sstream>
+
+#include <vector>
+
+#include <limits>
+
+#include <stdio.h>
+
+#include <ctype.h>
+
 using namespace std;
 
 bool isVowel(char);
@@ -18,21 +28,33 @@ string pigLatinSentence(string);
 
 int main()
 {
-     	string mySentence;
+	int index;
+	string mySentence, word, lastWord;
+	const char deliminators[] = " 1234567890-=!@#$%^&*)(_+`~|}{][:,.></;?";
 
-     	cout << "Pig Latin is a word game where for every word in the English Language," << endl;
-        cout << "the first letter is dropped, and added to the end of the word, along with the sound 'ay'." << endl;
-        cout << "This program will take any word you enter, and turn it into a Pig Latin word." << endl;
-        cout << "Please enter a word below." << endl;
-        cout << endl;
-   	getline(cin, mySentence);
+	cout << "Pig Latin is a word game where for every word in the English Language," << endl;
+	cout << "if the first sound is a consonant, the first sound is dropped" << endl;
+	cout << " and added to the end of the word, along with the sound 'ay'." << endl;
+	cout << "This program will take any word you enter, and turn it into a Pig Latin word." << endl;
+	cout << "Please enter a sentence below." << endl << endl;
+	getline(cin, mySentence);
 
-     	cout << "Your word is " << mySentence << "." << endl;
-     	cout << endl;
+	cout << "Your sentence is " << mySentence << "." << endl <<  endl;
 
-	mySentence = pigLatinWord(mySentence);	
+	index = mySentence.find(" ");
 
-     	cout << "Your word in Pig Latin is " << mySentence << "." << endl;
+	while (index != ULONG_LONG_MAX)
+	{
+		word.assign(mySentence, 0, index);
+		cout << "Your sentence in Pig Latin is:" << endl << pigLatinWord(word) << " ";
+
+		mySentence.erase(0, index + 1);
+		index = mySentence.find(" ");
+	}
+
+	lastWord = pigLatinWord(mySentence);
+
+	cout << lastWord << endl;
 
      	return 0;
 }
@@ -78,26 +100,35 @@ bool firstLetterIsVowel(string str)
 		case 'u':
 			return true;
 		default:
-			return false;
-		
+			return false;		
  	}
 }
 
 // Boolean to account for the special case of words that have a beginning sound of "qu" or "squ"
 bool firstSoundQU(string str)
 {
-	if (((str[0] == 'Q') || (str[0] == 'q')) && (str[1] == 'u'))
+	if ((str[0] == 'Q') || (str[0] == 'q'))
 	{
-		return true;
+		if (str[1] == 'u')
+		{
+			return true;
+		}
 	}
-	else if (((str[0] == 'S') || (str[0] == 's')) && (str[1] == 'q') && (str[2] == 'u'))
+	if ((str[0] == 'S') || (str[0] == 's'))
 	{
-		return true;
+		if (str [1] == 'q')
+		{
+			if (str[2] == 'u')
+			{
+				return true;
+			}
+		}
 	}
 	else
 	{
 		return false;
 	}
+	return 0;
 }
 
 
@@ -113,18 +144,15 @@ int vowelPosition(string str)
 	{
 		if (firstSoundQU(str))
 		{
-			if ((str[0] == 'S') || (str[0] == 's'))
+			for (int i = 0; i <= str.length(); i++)
 			{
-				counter = 3;
-			}
-			else if ((str[0] == 'Q') || (str[0] == 'q'))
-			{
-				counter = 2;
+				if ((str[i] == 'u') || (str[i] == 'U')) break;
+				counter = i + 2;
 			}
 		}
 		else
 		{
-			for (int i = 1; i <= str.length(); i++)
+			for (int i = 0; i <= str.length(); i++)
 			{
 				if (isVowel(str[i])) break;
 				counter = i + 1;
@@ -158,18 +186,73 @@ string pigLatinWord(string str)
 	return str;
 }
 
-string pigLatinSentence(string)
+bool isAlphabetic(char ch)
 {
-
-
-
-
-
-
-
-
-
-
-
-
+	if (isalpha(ch))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
+
+void split(const string &s, char delim, vector<string> &elems)
+{
+	stringstream ss;
+	ss.str(s);
+	string item;
+	while (getline(ss, item, delim))
+	{
+        	elems.push_back(item);
+	}
+}
+
+
+vector<string> split(const string &s, char delim)
+{
+	vector<string> elems;
+	split(s, delim, elems);
+	return pigLatinWord(elems);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
